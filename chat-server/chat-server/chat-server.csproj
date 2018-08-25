@@ -43,12 +43,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ListeningSocket.cs" />
+    <Compile Include="Commands\CommandConstants.cs" />
+    <Compile Include="Commands\InvalidCommand.cs" />
+    <Compile Include="Commands\JoinCommand.cs" />
+    <Compile Include="Commands\WhisperCommand.cs" />
+    <Compile Include="Commands\ChatCommand.cs" />
+    <Compile Include="Core\ChattingState.cs" />
+    <Compile Include="Core\CommandFactory.cs" />
+    <Compile Include="Core\BaseUserState.cs" />
+    <Compile Include="Core\ChatRoom.cs" />
+    <Compile Include="Core\ChatSocket.cs" />
+    <Compile Include="Core\ChatUser.cs" />
+    <Compile Include="Core\JoiningState.cs" />
+    <Compile Include="Core\NamingState.cs" />
+    <Compile Include="Interfaces\ICommand.cs" />
+    <Compile Include="Interfaces\IMessage.cs" />
+    <Compile Include="Interfaces\IRecipient.cs" />
+    <Compile Include="Interfaces\IUser.cs" />
+    <Compile Include="Interfaces\IRoom.cs" />
+    <Compile Include="Core\ChatServer.cs" />
+    <Compile Include="Interfaces\IServer.cs" />
+    <Compile Include="Interfaces\IUserState.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Core\ChatMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
