@@ -1,12 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
-using System;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System;
 
 namespace chat_server
 {
+    /// <summary>
+    /// Base class for implementing states for a user.
+    /// 
+    /// Author: Brian Fann
+    /// Last Updated: 8/25/18
+    /// </summary>
     public abstract class BaseUserState : IUserState
     {
         public ChatUser User { get; set; }
@@ -16,13 +20,10 @@ namespace chat_server
             User = context;
         }
 
-        public async Task Handle(ChatUser user)
+        public async Task Handle()
         {
-            Console.WriteLine("HANDLING NEW STATE");
-            var stream = user.NetworkClient.GetStream();
+            var stream = User.NetworkClient.GetStream();
             var buffer = new byte[4096];
-            await stream.FlushAsync();
-            //await stream.ReadAsync(buffer, 0, buffer.Length);
 
             while (User.CurrentState == this)
             {
@@ -31,7 +32,6 @@ namespace chat_server
                     var length = await stream.ReadAsync(buffer, 0, buffer.Length);
                     var input = Encoding.ASCII.GetString(buffer, 0, length);
                     input = Regex.Replace(input, @"\t|\n|\r", "");
-                    Console.WriteLine(input);
                     await ProcessInput(input);
                 }
             }
@@ -42,13 +42,7 @@ namespace chat_server
 
         internal async Task NextState(IUserState state)
         {
-            await OnExit();
-            Console.WriteLine("EXITED OLD STATE");
-            User.SetState(state);
-            Console.WriteLine("SET NEW STATE");
-            await state.OnEnter();
-            Console.WriteLine("ENTERED NEW STATE");
-            await state.Handle(User);
+            await User.SetState(state);
         }
 
         internal abstract Task ProcessInput(string input);

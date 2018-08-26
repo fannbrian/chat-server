@@ -3,7 +3,7 @@
 namespace chat_server
 {
     /// <summary>
-    /// Object that is able to receive messages.
+    /// Object that is inside a room and server.
     /// 
     /// Author: Brian Fann
     /// Last Updated: 8/22/18

@@ -1,16 +1,21 @@
 ﻿using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-using System;
 
 namespace chat_server
 {
+    /// <summary>
+    /// Handles behavior logic for joining a chatroom.
+    /// 
+    /// Author: Brian Fann
+    /// Last Updated: 8/25/18
+    /// </summary>
     public class JoinCommand : ICommand
     {
         public CommandType Type
         {
             get
             {
-                return CommandType.Whisper;
+                return CommandType.Join;
             }
         }
 
@@ -29,14 +34,18 @@ namespace chat_server
             var match = regex.Match(input);
             var roomName = match.Groups[1].Value;
 
-            Console.WriteLine($"Input is: {input}");
-            Console.Write($"[{roomName.Length}]");
-
-            if (User.CurrentServer.Rooms.TryGetValue(roomName, out var room))
+            if (roomName == "")
             {
-                Console.WriteLine(roomName);
+                await User.Write($"{AnsiColor.RED}{AnsiColor.BOLD}Please enter a room name.");
+            }
+            else if (User.CurrentServer.Rooms.TryGetValue(roomName, out var room))
+            {
                 User.CurrentRoom = room;
                 room.Users.Add(User);
+            }
+            else
+            {
+                await User.Write($"{AnsiColor.RED}{AnsiColor.BOLD}{roomName} does not exist.");
             }
         }
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
@@ -7,20 +6,23 @@ using System.Collections.Generic;
 
 namespace chat_server
 {
+    /// <summary>
+    /// Listens for incoming TCP Connection requests and opens connections for them. Also topmost hierarchy
+    /// Server => Room => Users.
+    /// 
+    /// Author: Brian Fann
+    /// Last Updated: 8/25/18
+    /// </summary>
     public class ChatServer : IServer
     {
-        static SemaphoreSlim roomSemaphore = new SemaphoreSlim(1, 1);
-
         public List<IUser> Users { get; private set; }
         public Dictionary<string, IRoom> Rooms { get; private set; }
 
         TcpListener Listener { get; set; }
-        CancellationToken CancelToken { get; set; }
 
-        public ChatServer(IPAddress ip, Int32 port, CancellationToken cancellationToken)
+        public ChatServer(IPAddress ip, Int32 port)
         {
             Listener = new TcpListener(ip, port);
-            CancelToken = cancellationToken;
 
             Rooms = new Dictionary<string, IRoom>()
             {
@@ -30,35 +32,19 @@ namespace chat_server
             
             Users = new List<IUser>();
         }
-
-        public async Task AddRoom(IRoom room)
-        {
-            await roomSemaphore.WaitAsync();
-            try
-            {
-                Rooms.Add(room.Name, room);
-            }
-            finally
-            {
-                roomSemaphore.Release();
-            }
-        }
-
+        
         public async Task Run()
         {
             Listener.Start();
 
-            Console.WriteLine("Server has started");
+            Console.WriteLine("Server started");
 
-            while(!CancelToken.IsCancellationRequested)
+            while(true)
             {
                 try
                 {
                     var client = await Listener.AcceptTcpClientAsync();
                     var stream = client.GetStream();
-
-                    var msg = System.Text.Encoding.ASCII.GetBytes("Hello! Welcome to my chat server. Please enter a name to begin!\n");
-                    await stream.WriteAsync(msg, 0, msg.Length);
                     
                     // Clear weird data
                     await stream.ReadAsync(new byte[4096], 0, 4096);
@@ -74,8 +60,6 @@ namespace chat_server
                     Console.WriteLine(ex.ToString());
                 }
             }
-
-            Console.WriteLine("Task has ended.");
         }
     }
 }

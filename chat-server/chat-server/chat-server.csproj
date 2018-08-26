@@ -43,19 +43,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\CommandConstants.cs" />
+    <Compile Include="Commands\CreateRoomCommand.cs" />
+    <Compile Include="Commands\JoinCommand - Copy.cs" />
+    <Compile Include="Commands\QuitCommand.cs" />
+    <Compile Include="Commands\LeaveCommand.cs" />
+    <Compile Include="Commands\HelpCommand.cs" />
+    <Compile Include="Commands\UsersCommand.cs" />
+    <Compile Include="Commands\RoomsCommand.cs" />
+    <Compile Include="Constants\AnsiConstants.cs" />
+    <Compile Include="Constants\CommandConstants.cs" />
     <Compile Include="Commands\InvalidCommand.cs" />
-    <Compile Include="Commands\JoinCommand.cs" />
+    <Compile Include="Commands\SetNameCommand.cs" />
     <Compile Include="Commands\WhisperCommand.cs" />
     <Compile Include="Commands\ChatCommand.cs" />
-    <Compile Include="Core\ChattingState.cs" />
-    <Compile Include="Core\CommandFactory.cs" />
+    <Compile Include="Constants\MessageConstants.cs" />
+    <Compile Include="States\ChattingState.cs" />
+    <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Core\BaseUserState.cs" />
     <Compile Include="Core\ChatRoom.cs" />
-    <Compile Include="Core\ChatSocket.cs" />
     <Compile Include="Core\ChatUser.cs" />
-    <Compile Include="Core\JoiningState.cs" />
-    <Compile Include="Core\NamingState.cs" />
+    <Compile Include="States\JoiningState.cs" />
+    <Compile Include="States\NamingState.cs" />
     <Compile Include="Interfaces\ICommand.cs" />
     <Compile Include="Interfaces\IMessage.cs" />
     <Compile Include="Interfaces\IRecipient.cs" />

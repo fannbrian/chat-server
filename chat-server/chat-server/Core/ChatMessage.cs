@@ -21,18 +21,19 @@ namespace chat_server
             Recipient = recipient;
             Content = content;
 
-            TimeStamp = DateTime.UtcNow;
+            TimeStamp = DateTime.Now;
         }
 
         public override string ToString()
         {
-            if (Recipient is ChatUser)
+            var timeStamp = TimeStamp.ToString(MessageConstants.TIMESTAMP_FORMAT);
+            if (Recipient is IUser)
             {
-                return $"{Sender.Name} whispered: {Content}";
+                return $"[{timeStamp}] {AnsiColor.RED}{Sender.Name} whispered: {AnsiColor.RESET}{Content}";
             }
             else
             {
-                return $"{Sender.Name}: {Content}";
+                return $"[{timeStamp}] {AnsiColor.CYAN}{Sender.Name}: {AnsiColor.RESET}{Content}";
             }
         }
     }

@@ -3,31 +3,32 @@
 namespace chat_server
 {
     /// <summary>
-    /// Handles behavior logic for displaying an error message.
+    /// Handles behavior logic for displaying commands for user.
     /// 
     /// Author: Brian Fann
     /// Last Updated: 8/25/18
     /// </summary>
-    public class InvalidCommand : ICommand
+    public class HelpCommand : ICommand
     {
         public CommandType Type
         {
             get
             {
-                return CommandType.Invalid;
+                return CommandType.Help;
             }
         }
 
         public IUser User { get; set; }
 
-        public InvalidCommand(IUser user)
+        public HelpCommand(IUser user)
         {
             User = user;
         }
 
         public async Task Execute(string input)
         {
-            await User.Write($"{AnsiColor.BOLD}{AnsiColor.RED}[{input}]{AnsiColor.RESET}{AnsiColor.RED} not recognized -- type {AnsiColor.BLUE}/help{AnsiColor.RED} for the available commands.{AnsiColor.RESET}");
+            var response = $"{AnsiColor.BOLD}{MessageConstants.HELP_MESSAGE}";
+            await User.Write(response);
         }
     }
 }

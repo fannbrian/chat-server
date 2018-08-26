@@ -2,6 +2,12 @@
 
 namespace chat_server
 {
+    /// <summary>
+    /// Handles behavior logic for propogating messages to users in a chatroom.
+    /// 
+    /// Author: Brian Fann
+    /// Last Updated: 8/25/18
+    /// </summary>
     public class ChatCommand : ICommand
     {
         public CommandType Type {

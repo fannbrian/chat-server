@@ -3,11 +3,14 @@
 namespace chat_server  
 {
     /// <summary>
-    /// TODO Add states for being named, pre-chatroom, and in-chatroom (to handle the different commands a user can use)
+    /// State object containing specific behavior for a user.
+    /// 
+    /// Author: Brian Fann
+    /// Last Updated: 8/24/18
     /// </summary>
     public interface IUserState
     {
-        Task Handle(ChatUser User);
+        Task Handle();
         Task OnEnter();
         Task OnExit();
     }

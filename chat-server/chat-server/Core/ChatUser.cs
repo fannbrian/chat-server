@@ -25,31 +25,37 @@ namespace chat_server
         {
             NetworkClient = client;
             CurrentServer = server;
-            CurrentState = new NamingState(this);
             _stream = client.GetStream();
         }
 
         public void Run()
         {
-            Task.Run(() => CurrentState.Handle(this));
+            Task.Run(() => SetState(new NamingState(this)));
         }
 
         public async Task Message(IMessage message)
         {
-            Console.WriteLine($"Sending {message.ToString()} to {message.Recipient}");
             var output = Encoding.Default.GetBytes(message.ToString() + "\n");
             await _stream.WriteAsync(output, 0, output.Length);
         }
 
         public async Task Write(string message)
         {
-            var output = Encoding.Default.GetBytes(message.ToString());
+            var output = Encoding.Default.GetBytes($"{message.ToString()}{AnsiColor.RESET}\n");
             await _stream.WriteAsync(output, 0, output.Length);
         }
 
-        public void SetState(IUserState state)
+        public async Task SetState(IUserState state)
         {
+            if (CurrentState != null)
+            {
+                await CurrentState.OnExit();
+            }
+
             CurrentState = state;
+
+            await state.OnEnter();
+            await state.Handle();
         }
     }
 }
