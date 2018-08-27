@@ -29,7 +29,7 @@ namespace chat_server
 
             input += Encoding.ASCII.GetString(buffer, 0, byteCount);
 
-            while (stream.DataAvailable)
+            while (input.IndexOf(Environment.NewLine) == -1)
             {
                 byteCount = await stream.ReadAsync(buffer, 0, buffer.Length);
                 input += Encoding.ASCII.GetString(buffer, 0, byteCount);
