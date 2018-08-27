@@ -10,6 +10,11 @@ Releases are available for Windows as an .exe at:
 
 Once the chat-server.exe is downloaded, simply run the executable to start the server.
 
+```
+Windows Defender may show a warning window.
+To run the executable, press "More Info" and then "Run Anyways"
+```
+
 If you are planning on running this server through a public ip address, there must be an inbound rule configured for TCP on port 9399 for ip addresses 0.0.0.0/0
 
 ## Known Issues
