@@ -42,6 +42,7 @@ where x.x.x.x is the server's ip address, and 9399 is the port.
 /join <chatroom> - Adds you to the specified chatroom. Cannot be used while in a room.
 /createroom <chatroom> - Creates a chatroom and adds you to it. Cannot be used while in a room.
 /w <user> - Privately messages specified user (must be in same chatroom)
+/setname <name> - Sets name to specified name.
 /rooms - Displays all rooms currently open as well as the number of users
 /users - Displays all users currently in your chatroom. Must be in a chatroom to use.
 /leave - Leaves the current chatroom
