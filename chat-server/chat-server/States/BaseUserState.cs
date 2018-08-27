@@ -23,17 +23,24 @@ namespace chat_server
         public async Task Handle()
         {
             var stream = User.NetworkClient.GetStream();
-            var buffer = new byte[4096];
+            var buffer = new byte[1024];
+            var input = "";
+            var byteCount = await stream.ReadAsync(buffer, 0, buffer.Length);
 
-            while (User.CurrentState == this)
+            input += Encoding.ASCII.GetString(buffer, 0, byteCount);
+
+            while (stream.DataAvailable)
             {
-                if (stream.DataAvailable)
-                {
-                    var length = await stream.ReadAsync(buffer, 0, buffer.Length);
-                    var input = Encoding.ASCII.GetString(buffer, 0, length);
-                    input = Regex.Replace(input, @"\t|\n|\r", "");
-                    await ProcessInput(input);
-                }
+                byteCount = await stream.ReadAsync(buffer, 0, buffer.Length);
+                input += Encoding.ASCII.GetString(buffer, 0, byteCount);
+            }
+
+            input = Regex.Replace(input, @"\t|\n|\r", "");
+            await ProcessInput(input);
+
+            if (User.CurrentState == this)
+            {
+                await Handle();
             }
         }
 

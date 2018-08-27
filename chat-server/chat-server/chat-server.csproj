@@ -50,7 +50,6 @@
     <Compile Include="Commands\HelpCommand.cs" />
     <Compile Include="Commands\UsersCommand.cs" />
     <Compile Include="Commands\RoomsCommand.cs" />
-    <Compile Include="Constants\AnsiConstants.cs" />
     <Compile Include="Constants\CommandConstants.cs" />
     <Compile Include="Commands\InvalidCommand.cs" />
     <Compile Include="Commands\SetNameCommand.cs" />
@@ -59,7 +58,7 @@
     <Compile Include="Constants\MessageConstants.cs" />
     <Compile Include="States\ChattingState.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
-    <Compile Include="Core\BaseUserState.cs" />
+    <Compile Include="States\BaseUserState.cs" />
     <Compile Include="Core\ChatRoom.cs" />
     <Compile Include="Core\ChatUser.cs" />
     <Compile Include="States\JoiningState.cs" />
