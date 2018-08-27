@@ -30,7 +30,7 @@ namespace chat_server
         {
             // Group 0: /setname
             // Group 1: Name
-            var regex = new Regex($"{CommandPhrase.START_CHARACTER}{CommandPhrase.SET_NAME} (.*)");
+            var regex = new Regex($"{CommandPhrase.START_CHARACTER}{CommandPhrase.SET_NAME}(.*)");
             var match = regex.Match(input);
             var name = match.Groups[1].Value;
 
