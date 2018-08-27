@@ -30,7 +30,7 @@ namespace chat_server
             var room = User.CurrentRoom;
             
             // Notify room that user has left.
-            await room.Write($"{AnsiColor.BLUE}{User.Name}{AnsiColor.RESET} has left {AnsiColor.BOLD}{AnsiColor.RED}{room.Name}.");
+            await room.Write($"{User.Name} has left {room.Name}.");
             room.Users.Remove(User);
 
             // Remove room if not persistent and no users remaining.

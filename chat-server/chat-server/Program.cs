@@ -1,9 +1,6 @@
 ﻿using System;
-using System.IO;
 using System.Net;
-using System.Net.Sockets;
 using System.Threading.Tasks;
-using System.Text;
 
 namespace chat_server
 {
@@ -11,7 +8,8 @@ namespace chat_server
     {
         static void Main(string[] args)
         {
-            Int32 port = 23;
+            // TcpPort
+            Int32 port = 9399;
             IPAddress ip = IPAddress.Any;
             var listen = new ChatServer(ip, port);
             Task.Run(() => listen.Run()).Wait();

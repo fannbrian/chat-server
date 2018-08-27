@@ -39,7 +39,7 @@ namespace chat_server
             // Handle empty name edge case
             if (name.Length <= 1)
             {
-                await User.Write($"{AnsiColor.RED}You must enter a name.");
+                await User.Write($"You must enter a name.");
                 return;
             }
 
@@ -48,7 +48,7 @@ namespace chat_server
             {
                 if (user.Name == name)
                 {
-                    await User.Write($"{AnsiColor.RED}{name} is taken. Try again!");
+                    await User.Write($"{name} is taken. Try again!");
                     return;
                 }
             }
@@ -56,11 +56,11 @@ namespace chat_server
             // Notify either current room or user of name change
             if (User.CurrentRoom != null)
             {
-                await User.CurrentRoom.Write($"{AnsiColor.BLUE}{User.Name} has set their name to {name}");
+                await User.CurrentRoom.Write($"{User.Name} has set their name to {name}");
             }
             else
             {
-                await User.Write($"{AnsiColor.BLUE}You has set your name to {name}");
+                await User.Write($"You has set your name to {name}");
             }
 
             User.Name = name;

@@ -30,13 +30,13 @@ namespace chat_server
         {
             // Group 0: /join
             // Group 1: Name
-            var regex = new Regex("/join (.*)");
+            var regex = new Regex($"{CommandPhrase.START_CHARACTER}{CommandPhrase.JOIN}(.*)");
             var match = regex.Match(input);
             var roomName = match.Groups[1].Value;
 
             if (roomName == "")
             {
-                await User.Write($"{AnsiColor.RED}{AnsiColor.BOLD}Please enter a room name.");
+                await User.Write($"Please enter a room name.");
             }
             else if (User.CurrentServer.Rooms.TryGetValue(roomName, out var room))
             {
@@ -45,7 +45,7 @@ namespace chat_server
             }
             else
             {
-                await User.Write($"{AnsiColor.RED}{AnsiColor.BOLD}{roomName} does not exist.");
+                await User.Write($"{roomName} does not exist.");
             }
         }
     }

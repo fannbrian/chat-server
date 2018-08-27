@@ -29,11 +29,11 @@ namespace chat_server
             var timeStamp = TimeStamp.ToString(MessageConstants.TIMESTAMP_FORMAT);
             if (Recipient is IUser)
             {
-                return $"[{timeStamp}] {AnsiColor.RED}{Sender.Name} whispered: {AnsiColor.RESET}{Content}";
+                return $"[{timeStamp}] {Sender.Name} whispered: {Content}";
             }
             else
             {
-                return $"[{timeStamp}] {AnsiColor.CYAN}{Sender.Name}: {AnsiColor.RESET}{Content}";
+                return $"[{timeStamp}] {Sender.Name}: {Content}";
             }
         }
     }

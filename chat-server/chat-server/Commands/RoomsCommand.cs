@@ -27,14 +27,14 @@ namespace chat_server
 
         public async Task Execute(string input)
         {
-            var response = $"{AnsiColor.BOLD}Active rooms are:{AnsiColor.RESET}\n-------------------{AnsiColor.RED}{AnsiColor.BOLD}";
+            var response = $"Active rooms are:\n-------------------";
 
             foreach (var room in User.CurrentServer.Rooms.Values)
             {
                 response += $"\n* {room.Name} ({room.Users.Count})";
             }
 
-            response += $"{AnsiColor.RESET}\n-------------------";
+            response += $"\n-------------------";
 
             await User.Write(response);
         }

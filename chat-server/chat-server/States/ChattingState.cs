@@ -18,7 +18,7 @@ namespace chat_server
 
         public override async Task OnEnter()
         {
-            await User.CurrentRoom.Write($"{AnsiColor.BLUE}{User.Name}{AnsiColor.RESET} has joined {AnsiColor.BOLD}{AnsiColor.RED}{User.CurrentRoom.Name}.");
+            await User.CurrentRoom.Write($"{User.Name} has joined {User.CurrentRoom.Name}.");
         }
 
         public override async Task OnExit()

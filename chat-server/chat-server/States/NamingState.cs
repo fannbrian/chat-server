@@ -14,12 +14,12 @@ namespace chat_server
 
         public override async Task OnEnter()
         {
-            await User.Write($"{AnsiColor.BOLD}Welcome to my chat server. Please enter a name to begin!");
+            await User.Write($"Welcome to my chat server. Please enter a name to begin!");
         }
 
         public override async Task OnExit()
         {
-            await User.Write($"Your name has been set to: {AnsiColor.BLUE}{User.Name}");
+            await User.Write($"Your name has been set to: {User.Name}");
         }
 
         internal override async Task ProcessInput(string input)
@@ -32,7 +32,7 @@ namespace chat_server
             {
                 if (user.Name == input)
                 {
-                    await User.Write($"{AnsiColor.RED}That name is taken. Try again!");
+                    await User.Write($"That name is taken. Try again!");
                     return;
                 }
             }

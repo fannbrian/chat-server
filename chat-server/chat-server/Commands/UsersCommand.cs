@@ -27,14 +27,14 @@ namespace chat_server
 
         public async Task Execute(string input)
         {
-            var response = $"{AnsiColor.BOLD}Users in {AnsiColor.RED}{User.CurrentRoom.Name}{AnsiColor.RESET} {AnsiColor.BOLD}are:{AnsiColor.RESET}\n-------------------{AnsiColor.BLUE}{AnsiColor.BOLD}";
+            var response = $"Users in {User.CurrentRoom.Name} are:\n-------------------";
 
             foreach (var user in User.CurrentRoom.Users)
             {
                 response += $"\n* {user.Name}";
             }
 
-            response += $"{AnsiColor.RESET}\n-------------------";
+            response += $"\n-------------------";
 
             await User.Write(response);
         }

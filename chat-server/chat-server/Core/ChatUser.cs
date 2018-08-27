@@ -41,7 +41,7 @@ namespace chat_server
 
         public async Task Write(string message)
         {
-            var output = Encoding.Default.GetBytes($"{message.ToString()}{AnsiColor.RESET}\n");
+            var output = Encoding.Default.GetBytes($"{message.ToString()}\n");
             await _stream.WriteAsync(output, 0, output.Length);
         }
 

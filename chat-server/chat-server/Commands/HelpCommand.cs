@@ -27,7 +27,7 @@ namespace chat_server
 
         public async Task Execute(string input)
         {
-            var response = $"{AnsiColor.BOLD}{MessageConstants.HELP_MESSAGE}";
+            var response = $"{MessageConstants.HELP_MESSAGE}";
             await User.Write(response);
         }
     }

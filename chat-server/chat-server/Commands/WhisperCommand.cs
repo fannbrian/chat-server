@@ -31,7 +31,7 @@ namespace chat_server
             // Group 0: /w
             // Group 1: Name
             // Group 2: Message
-            var regex = new Regex($"{CommandPhrase.START_CHARACTER}{CommandPhrase.WHISPER} ([^\\s]+) (.*)");
+            var regex = new Regex($"{CommandPhrase.START_CHARACTER}{CommandPhrase.WHISPER}([^\\s]+) (.*)");
             var match = regex.Match(input);
             var room = User.CurrentRoom;
             var userExists = false;
@@ -47,7 +47,7 @@ namespace chat_server
 
                     var timeStamp = message.TimeStamp.ToString(MessageConstants.TIMESTAMP_FORMAT);
 
-                    var response = $"[{timeStamp}] To {AnsiColor.RED}{recipient.Name}: {AnsiColor.RESET}{message.Content}";
+                    var response = $"[{timeStamp}] To {recipient.Name}: {message.Content}";
                     await User.Write(response);
                     break;
                 }
@@ -55,7 +55,7 @@ namespace chat_server
 
             if (!userExists)
             {
-                var response = $"{AnsiColor.RED}{AnsiColor.BOLD}{targetUser} could not be found in this room.";
+                var response = $"{targetUser} could not be found in this room.";
                 await User.Write(response);
             }
         }

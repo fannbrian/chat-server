@@ -45,9 +45,6 @@ namespace chat_server
                 {
                     var client = await Listener.AcceptTcpClientAsync();
                     var stream = client.GetStream();
-                    
-                    // Clear weird data
-                    await stream.ReadAsync(new byte[4096], 0, 4096);
 
                     var user = new ChatUser(client, this);
                     Users.Add(user);

@@ -27,7 +27,7 @@ namespace chat_server
 
         public async Task Execute(string input)
         {
-            await User.Write($"{AnsiColor.BOLD}{AnsiColor.RED}[{input}]{AnsiColor.RESET}{AnsiColor.RED} not recognized -- type {AnsiColor.BLUE}/help{AnsiColor.RED} for the available commands.{AnsiColor.RESET}");
+            await User.Write($"[{input}] not recognized -- type /help for the available commands.");
         }
     }
 }

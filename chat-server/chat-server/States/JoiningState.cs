@@ -17,13 +17,13 @@ namespace chat_server
 
         public override async Task OnEnter()
         {
-            await User.Write($"Enter a room by typing in {AnsiColor.BOLD}{AnsiColor.BLUE}/join <chatroom>{AnsiColor.RESET}. E.g. {AnsiColor.BOLD}{AnsiColor.BLUE}/join General{AnsiColor.RESET}" +
-                             $"\nYou can check what rooms are available with {AnsiColor.BOLD}{AnsiColor.BLUE}/rooms");
+            await User.Write($"Enter a room by typing in /join <chatroom>. E.g. /join General" +
+                             $"\nYou can check what rooms are available with /rooms");
         }
 
         public override async Task OnExit()
         {
-            await User.Write($"You have joined {AnsiColor.BOLD}{AnsiColor.RED}{User.CurrentRoom.Name}.");
+            await User.Write($"You have joined {User.CurrentRoom.Name}.");
         }
 
         internal override async Task ProcessInput(string input)

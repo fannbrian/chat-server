@@ -32,7 +32,7 @@ namespace chat_server
 
             if (chatUser.CurrentRoom != null)
             {
-                await chatUser.CurrentRoom.Write($"{AnsiColor.BLUE}{chatUser.Name}{AnsiColor.RESET} has left {AnsiColor.BOLD}{AnsiColor.RED}{chatUser.CurrentRoom.Name}.");
+                await chatUser.CurrentRoom.Write($"{chatUser.Name} has left {chatUser.CurrentRoom.Name}.");
                 chatUser.CurrentRoom.Users.Remove(chatUser);
             }
 
