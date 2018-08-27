@@ -13,6 +13,7 @@
             "/join <chatroom> - Adds you to the specified chatroom. Cannot be used while in a room.\n" +
             "/createroom <chatroom> - Creates a chatroom and adds you to it. Cannot be used while in a room.\n" +
             "/w <user> - Privately messages specified user (must be in same chatroom)\n" +
+            "/setname <name> - Sets name to specified name.\n" +
             "/rooms - Displays all rooms currently open as well as the number of users\n" +
             "/users - Displays all users currently in your chatroom. Must be in a chatroom to use.\n" +
             "/leave - Leaves the current chatroom\n" +

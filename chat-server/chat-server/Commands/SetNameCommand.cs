@@ -60,7 +60,7 @@ namespace chat_server
             }
             else
             {
-                await User.Write($"You has set your name to {name}");
+                await User.Write($"You have set your name to {name}");
             }
 
             User.Name = name;
